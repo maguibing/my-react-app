@@ -1,0 +1,17 @@
+.lw-w-width{
+    width: 300px;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+    background-color: royalblue;
+    transition: all 1s;
+}
+.active:hover{
+    width:400px ;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
