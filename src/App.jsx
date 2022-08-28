@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState} from 'react';
 import {useMouse} from './hooks/hooks'
 import {useRef, useEffect, useContext} from "react";
+import  store from './store'
 // 使用useContext
 import Context from './hooks/useContext'
 
