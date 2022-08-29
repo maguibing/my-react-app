@@ -16,10 +16,8 @@ const App = () => {
     useEffect(() => {
         inputRef.current = count
     }, [count])
-    console.log(inputRef.current,'!!!!!')
 
     const [user, setUser] = useState({name: "zs", age: 18})
-
 
     /**
      * vue3 + vite + typesript + pinia + vueRouter4
