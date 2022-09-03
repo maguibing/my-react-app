@@ -1,12 +1,8 @@
-const Reducer = (state, action) => {
-    switch (action.type) {
-        case "increment":
-            return {...state, count: action.payload + state.count};
-        case "decrement":
-            return {...state, count: action.payload - state.count};
-        default:
-            return state
-    }
-}
+import {combineReducers} from 'redux'
+import todos from './todos' // todos模块
 
-export default Reducer
+
+export default combineReducers({
+    todos
+})
+

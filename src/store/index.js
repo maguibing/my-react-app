@@ -1,8 +1,8 @@
-import createStore from 'redux'
+import {createStore} from 'redux'
 
 import Reducer from './reducers'
 
-const store = createStore(Reducer)
+export default  createStore(Reducer)
 
-store.dispatch({ type: 'increment', payload: 1 })
+// store.dispatch({ type: 'increment', payload: 1 })
  
