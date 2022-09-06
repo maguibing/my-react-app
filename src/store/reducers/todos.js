@@ -1,4 +1,4 @@
-import { DEL_TODO,TOGGLE_TODO,ADD_TODO } from '../actions/actionTypes'
+import { DEL_TODO,TOGGLE_TODO,ADD_TODO,CHECK_ALL } from '../actions/actionTypes'
 
 const initState = [
     { id: 1, text: '吃饭', done: true },
@@ -15,6 +15,8 @@ const todos = (state = initState, action) => {
                 if (v.id !== action.payload) return v  
                 return {  ...v, done:!v.done }
             })
+        case CHECK_ALL:
+            return state.map(v => ({...v,done:action.payload }))
         case ADD_TODO:
             const id = state.length > 0 ? state.length + 1 : 1
             return [

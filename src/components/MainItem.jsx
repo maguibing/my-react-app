@@ -6,11 +6,11 @@ const MainItem = ({ id,text,done}) => {
     return (
         <li className={done?'completed':'' }>
         <div className="view">
-                <input className="toggle" type="checkbox" checked={ done } onClick={()=>dispatch(toggleFn(id))}/>
+                <input className="toggle" type="checkbox" checked={ done } onChange={()=>dispatch(toggleFn(id))}/>
                 <label>{ text }</label>
           <button className="destroy" onClick={()=>dispatch(delTodo(id))}></button>
         </div>
-        <input className="edit" value="Create a TodoMVC template" />
+        {/* <input className="edit" value="Create a TodoMVC template" /> */}
       </li>
     )
 }
