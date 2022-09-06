@@ -4,7 +4,16 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 const Main = () => { 
-    const list = useSelector(state => state.todos)
+    const filter = useSelector(state=>state.filters)
+    const list = useSelector(state => {
+        if (filter === 'all') {
+            return state.todos
+        } else if (filter === 'active') {
+            return state.todos.filter(v=>!v.done)
+        } else {
+            return state.todos.filter(v=>v.done)
+        }
+     })
     const isAll = list.every(v=>v.done)
     const dispatch = useDispatch()
     return (

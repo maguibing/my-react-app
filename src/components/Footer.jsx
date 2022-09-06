@@ -1,8 +1,10 @@
+import classNames from 'classnames'
 import { useSelector, useDispatch } from "react-redux"
-// import { } from ''
+import { clearDone,changeStatus } from '../store/actions/todos'
 
 const Footer = () => { 
     const count = useSelector(state=>state.todos.filter(v=>!v.done).length)
+    const filter = useSelector(state=>state.filters)
     const dispatch = useDispatch()
     return (
         <footer className="footer">
@@ -11,16 +13,16 @@ const Footer = () => {
         </span>
         <ul className="filters">
           <li>
-            <a className="selected" href="#/">All</a>
+            <a className={classNames({ selected: filter === 'all' })} onClick={()=>dispatch(changeStatus('all'))} href="#/">All</a>
           </li>
           <li>
-            <a href="#/active">Active</a>
+            <a className={classNames({selected:filter==='active'})} onClick={()=>dispatch(changeStatus('active'))} href="#/active">Active</a>
           </li>
           <li>
-            <a href="#/completed">Completed</a>
+            <a className={classNames({selected:filter==='completed'})} onClick={()=>dispatch(changeStatus('completed'))} href="#/completed">Completed</a>
           </li>
         </ul>
-        <button className="clear-completed" onChange={}>Clear completed</button>
+            <button className="clear-completed" onClick={()=>dispatch(clearDone())}>Clear completed</button>
       </footer>
     )
 }
