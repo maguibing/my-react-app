@@ -13,10 +13,9 @@ const App = () => {
             <Header></Header>
             <Main></Main>
             <Footer></Footer>
-      </section>
+        </section>
     )
 }
-
 
 
 export default App;
