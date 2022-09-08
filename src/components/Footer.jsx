@@ -1,12 +1,12 @@
-import classNames from 'classnames';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeStatus, clearAllSync } from '../store/actions/todos';
+import classNames from 'classnames'
+import { useSelector, useDispatch } from 'react-redux'
+import { changeStatus, clearAllSync } from '../store/actions/todos'
 // clearDone
 
 const Footer = () => {
-	const count = useSelector(state => state.todos.filter(v => !v.done).length);
-	const filter = useSelector(state => state.filters);
-	const dispatch = useDispatch();
+	const count = useSelector(state => state.todos.filter(v => !v.done).length)
+	const filter = useSelector(state => state.filters)
+	const dispatch = useDispatch()
 	return (
 		<footer className="footer">
 			<span className="todo-count">
@@ -33,7 +33,7 @@ const Footer = () => {
 				Clear completed
 			</button>
 		</footer>
-	);
-};
+	)
+}
 
-export default Footer;
+export default Footer

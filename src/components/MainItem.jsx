@@ -1,35 +1,35 @@
-import { useDispatch } from 'react-redux';
-import classNames from 'classnames';
-import { useState, useRef, useEffect } from 'react';
-import { delTodo, toggleFn, editText } from '../store/actions/todos';
+import { useDispatch } from 'react-redux'
+import classNames from 'classnames'
+import { useState, useRef, useEffect } from 'react'
+import { delTodo, toggleFn, editText } from '../store/actions/todos'
 
 const MainItem = ({ id, text, done }) => {
-	const [isEdit, setIsEdit] = useState(false);
-	const [todoName, setTodoName] = useState('');
-	const dispatch = useDispatch();
-	const inputRef = useRef(null);
+	const [isEdit, setIsEdit] = useState(false)
+	const [todoName, setTodoName] = useState('')
+	const dispatch = useDispatch()
+	const inputRef = useRef(null)
 
 	const onUpdateTodo = e => {
-		if (e.keyCode !== 13) return;
-		if (todoName.trim() === '') return;
-		dispatch(editText(id, todoName.trim()));
-		setIsEdit(false);
-	};
+		if (e.keyCode !== 13) return
+		if (todoName.trim() === '') return
+		dispatch(editText(id, todoName.trim()))
+		setIsEdit(false)
+	}
 
 	const onBlurFn = () => {
-		setIsEdit(false);
-		if (todoName.trim() === '') return;
-		dispatch(editText(id, todoName.trim()));
-	};
+		setIsEdit(false)
+		if (todoName.trim() === '') return
+		dispatch(editText(id, todoName.trim()))
+	}
 
 	const onDoubleFn = () => {
-		setTodoName(text);
-		setIsEdit(true);
-	};
+		setTodoName(text)
+		setIsEdit(true)
+	}
 
 	useEffect(() => {
-		inputRef.current.focus();
-	}, [isEdit]);
+		inputRef.current.focus()
+	}, [isEdit])
 
 	return (
 		<li className={classNames({ completed: done, editing: isEdit })}>
@@ -40,7 +40,7 @@ const MainItem = ({ id, text, done }) => {
 			</div>
 			<input className="edit" ref={inputRef} onBlur={onBlurFn} value={todoName} onKeyDown={onUpdateTodo} onChange={e => setTodoName(e.target.value)} />
 		</li>
-	);
-};
+	)
+}
 
-export default MainItem;
+export default MainItem

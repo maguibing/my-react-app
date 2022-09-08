@@ -1,9 +1,9 @@
-import './App.css';
-import React from 'react';
+import './App.css'
+import React from 'react'
 
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
+import Header from './components/Header'
+import Main from './components/Main'
+import Footer from './components/Footer'
 
 const App = () => {
 	return (
@@ -12,7 +12,7 @@ const App = () => {
 			<Main></Main>
 			<Footer></Footer>
 		</section>
-	);
-};
+	)
+}
 
-export default App;
+export default App

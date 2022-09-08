@@ -1,20 +1,20 @@
-import MainItem from './MainItem';
-import { checkALL } from '../store/actions/todos';
-import { useSelector, useDispatch } from 'react-redux';
+import MainItem from './MainItem'
+import { checkALL } from '../store/actions/todos'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Main = () => {
-	const filter = useSelector(state => state.filters);
+	const filter = useSelector(state => state.filters)
 	const list = useSelector(state => {
 		if (filter === 'all') {
-			return state.todos;
+			return state.todos
 		} else if (filter === 'active') {
-			return state.todos.filter(v => !v.done);
+			return state.todos.filter(v => !v.done)
 		} else {
-			return state.todos.filter(v => v.done);
+			return state.todos.filter(v => v.done)
 		}
-	});
-	const isAll = list.every(v => v.done);
-	const dispatch = useDispatch();
+	})
+	const isAll = list.every(v => v.done)
+	const dispatch = useDispatch()
 	return (
 		<section className="main">
 			<input id="toggle-all" className="toggle-all" checked={isAll} onChange={e => dispatch(checkALL(e.target.checked))} type="checkbox" />
@@ -25,7 +25,7 @@ const Main = () => {
 				))}
 			</ul>
 		</section>
-	);
-};
+	)
+}
 
-export default Main;
+export default Main
