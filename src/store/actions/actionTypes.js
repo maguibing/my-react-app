@@ -5,3 +5,19 @@ export const CHECK_ALL = 'todos/all' // 全选反选
 export const CLEAR_DONE = 'todos/clear' // 删除全部
 export const EDIT_TEXT = 'todos/edit' // 编辑内容
 export const CHANGE_STATUS = 'todos/change' // 编辑内容
+
+
+
+
+
+/**
+ * channel articleList actionTypes
+ * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+
+export const GET_CHANNEL = 'channl/get' // 获取文章标题列表
+export const CHANGE_ACTIVE = 'chang/active' // 修改高亮
+export const GETARTICLE_LIST = 'get/articleList' // 获取相关文章列表
+

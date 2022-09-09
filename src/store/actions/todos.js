@@ -19,7 +19,7 @@ const clearAllSync = () => {
             dispatch(clearDone())
         },1000)    
     }
- }
+}
 
 export { 
     delTodo,
