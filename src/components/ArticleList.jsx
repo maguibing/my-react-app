@@ -5,7 +5,6 @@ import { getArticleList } from '../store/actions/article'
 const ArticleList = () => {
     const activeId = useSelector(state => state.channel.activeId)
     const acticleList = useSelector(state => state.articleList)
-    console.log()
 
     const dispatch = useDispatch()
     useEffect(() => {
