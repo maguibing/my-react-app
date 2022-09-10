@@ -1,8 +1,14 @@
+import { SET_TOKEN } from '../actions/actionTypes'
+import { getToken } from '@/utils/auth'
 const initial = {
-    mobile: "",
-    code:""
+    token:getToken()
 }
 
 export const user = (state = initial, action) => {
-    return state
+    switch (action.type) { 
+        case SET_TOKEN:
+            return {...state, token:action.payload}
+        default:
+            return state
+    }
 }
