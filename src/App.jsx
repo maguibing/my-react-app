@@ -1,22 +1,14 @@
 import './App.css'
 import React from 'react'
-
-// import Header from './components/Header'
-// import Main from './components/Main'
-// import Footer from './components/Footer'
-
-import Channel from './components/Channel'
-import ArticleList from './components/ArticleList'
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const App = () => {
     return (
-        <section className="todoapp">
-            {/* <Header></Header>
-            <Main></Main>
-            <Footer></Footer> */}
-            <Channel></Channel>
-            <ArticleList></ArticleList>
-        </section>
+        // <Router>
+        // </Router>
+        <div className="container">
+            <h2>Project Initial</h2>
+        </div>
     )
 }
 
