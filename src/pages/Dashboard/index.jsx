@@ -1,7 +1,9 @@
+import Root from './index.module.scss'
+
 const Dashboard = () => {
     return (
         <>
-            <div>首页</div>
+            <div className={Root.root}>Dashboard</div>
         </>
     )
 }

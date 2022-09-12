@@ -33,6 +33,7 @@ http.interceptors.response.use(res => {
                     from: customHistory.location.pathname
                 }
             })
+            window.location.reload()
         }
     }
   return Promise.reject(e)
