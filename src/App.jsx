@@ -1,12 +1,13 @@
 import './App.css'
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import Login from '@/pages/Login'
 import Layout from '@/pages/Layout'
 import AuthRoute from '@/components/AutoRoute'
+import { customHistory } from './utils/history'
 const App = () => {
     return (
-        <Router>
+        <Router history={customHistory}>
             <div className="App" style={{ height: 100 + 'vh' }}>
                 <Switch>
                     <Route path="/login" component={Login}></Route>
