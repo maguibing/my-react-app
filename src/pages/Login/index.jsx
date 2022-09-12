@@ -1,5 +1,5 @@
 import './index.scss'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { setToken } from '@/store/actions/user'
 import { useDispatch } from 'react-redux'
 import { rules } from '@/utils/validate'
@@ -8,12 +8,13 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons'
 const Login = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const location = useLocation()
     // 操作成功
     const OnFinish = async data => {
         const { mobile, code } = data
         try {
             await dispatch(setToken({ mobile, code }))
-            history.push('/')
+            history.replace(location?.state?.from || '/')
         } catch (e) {
             message.error(e?.response?.data?.message || '登录失败')
         }
