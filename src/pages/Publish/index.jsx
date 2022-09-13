@@ -8,7 +8,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import Channels from '@/components/Channels'
 import { useState } from 'react'
-import { addArticle, editArticle, getArticle } from '@/store/actions/puhlish'
+import { addArticle, editArticle, getArticle } from '@/store/actions/publish'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
