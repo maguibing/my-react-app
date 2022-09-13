@@ -5,17 +5,38 @@ import 'react-quill/dist/quill.snow.css'
 
 import { Card, Breadcrumb, Form, Button, Input, Space, Radio, Upload, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import Channels from '@/components/Channels'
 import { useState } from 'react'
-import { addArticle } from '@/store/actions/puhlish'
+import { addArticle, editArticle, getArticle } from '@/store/actions/puhlish'
 import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 const Publish = () => {
 	const [fileList, setFileList] = useState([])
 	const [type, setType] = useState(1)
 	const dispatch = useDispatch()
 	const history = useHistory()
+	const params = useParams()
+	const [form] = Form.useForm()
+
+	useEffect(() => {
+		const setFormData = async () => {
+			if (params.id) {
+				// request 回显
+				const { title, cover, content, channel_id } = await dispatch(getArticle(params.id))
+				form.setFieldsValue({ title, content, channel_id })
+				setType(cover.type)
+				setFileList(cover.images.map(item => ({ url: item })))
+			} else {
+				// 初始化数据
+				setFileList([])
+				setType(1)
+				form.resetFields()
+			}
+		}
+		setFormData()
+	}, [dispatch, form, params.id])
 
 	const onchangeType = e => {
 		setType(e.target.value)
@@ -26,14 +47,30 @@ const Publish = () => {
 		setFileList(fileList)
 	}
 
-	const onFinishFunction = data => {
+	const onFinishFunction = async (data, draft = false) => {
 		if (type !== fileList.length) return message.error('请按照选择的封面类型上传图片')
 		const reqParams = {
 			...data,
-			cover: { type, images: fileList.map(item => item.response.data.url) },
+			cover: {
+				type,
+				images: fileList.map(item => item?.response?.data?.url || item.url),
+			},
 		}
-		dispatch(addArticle(reqParams))
+		if (params.id) {
+			reqParams.id = params.id
+			await dispatch(editArticle(reqParams, draft))
+		} else {
+			await dispatch(addArticle(reqParams, draft))
+		}
+		message.success('保存成功')
 		history.push('/article')
+	}
+
+	const saveDarft = async () => {
+		try {
+			const values = await form.validateFields()
+			onFinishFunction(values, true)
+		} catch (e) {}
 	}
 
 	return (
@@ -48,11 +85,11 @@ const Publish = () => {
 							<Breadcrumb.Item>
 								<Link to="/article">内容管理</Link>
 							</Breadcrumb.Item>
-							<Breadcrumb.Item>发布文章</Breadcrumb.Item>
+							<Breadcrumb.Item>{params.id ? '修改文章' : '发布文章'}</Breadcrumb.Item>
 						</Breadcrumb>
 					}
 				>
-					<Form labelCol={{ span: 4 }} onFinish={onFinishFunction}>
+					<Form form={form} labelCol={{ span: 4 }} onFinish={onFinishFunction}>
 						<Form.Item label="文章标题：" name="title" rules={rules.title}>
 							<Input placeholder="请输入文章标题" style={{ width: 400 }} />
 						</Form.Item>
@@ -87,8 +124,9 @@ const Publish = () => {
 						<Form.Item wrapperCol={{ offset: 4 }}>
 							<Space>
 								<Button type="primary" htmlType="submit">
-									发表文章
+									{params.id ? '修改文章' : '发布文章'}
 								</Button>
+								<Button onClick={saveDarft}>存入草稿</Button>
 							</Space>
 						</Form.Item>
 					</Form>
