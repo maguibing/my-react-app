@@ -1,18 +1,19 @@
- const SET_TOKEN = "set/token" // 存储token
- const USER_INFO = "user/getUserInfo" // 存储token
+ const SET_TOKEN = "set/token" 
+ const USER_INFO = "user/getUserInfo" 
 
-
-// ---------------------------------------------------文章模块----------------------------------------------------------------
-const GET_LIST= 'article/getList' // 获取筛选分类列表
-const ARTICLE_LIST = 'article/setArticles' // 获取文章列表
+const GET_LIST= 'article/getList' 
+const ARTICLE_LIST = 'article/setArticles' 
 const DEL_ARTICLE = 'del/article'
+
+const ADD_ARTICLE = 'add/article'
 
 export { 
     SET_TOKEN,
     USER_INFO,
     GET_LIST,
     ARTICLE_LIST,
-    DEL_ARTICLE
+    DEL_ARTICLE,
+    ADD_ARTICLE
 }
 
  

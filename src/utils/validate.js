@@ -10,9 +10,18 @@ const rules = {
     ],
     code: [
         {required:true, message:"验证码必填"},
-],  
+    ],  
     checked: [
         {validator:validator}
+    ],
+    title: [
+        {required:true, message:"文章标题必填"},
+    ],
+    channle: [
+        {required:true, message:"文章频道必填"},
+    ],
+    articleContent: [
+        {required:true, message:"文章内容必填"},
     ]
 }
 

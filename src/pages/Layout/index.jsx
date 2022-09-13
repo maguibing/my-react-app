@@ -40,7 +40,7 @@ const GeekLayout = () => {
 		<Layout className="geek-layout">
 			<Sider width={200}>
 				<div className="logo">GEEK</div>
-				<Menu defaultSelectedKeys={[activeKey]} mode="inline" theme="dark" items={items}></Menu>
+				<Menu selectedKeys={[activeKey]} mode="inline" theme="dark" items={items}></Menu>
 			</Sider>
 			<Layout>
 				<Header>
