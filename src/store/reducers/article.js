@@ -1,10 +1,10 @@
 import { GET_LIST,ARTICLE_LIST } from '../actions/actionTypes'
 const initial = {
     channelList: [],
-     results: [],
-     page: 1,
-     per_page: 10,
-     total_count: 0
+    results: [],
+    page: 1,
+    per_page: 10,
+    total_count: 0
 }
 export const article = (state = initial, action) => { 
     switch (action.type) { 

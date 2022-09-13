@@ -23,3 +23,14 @@ export const getArticles = (reqParams) => {
         dispatch({type:ARTICLE_LIST, payload:res})
      }
 }
+
+/**
+ * 删除指定文章
+ * @param {*} id 
+ * @returns 
+ */
+export const delArticles = (id) => { 
+    return async (dispatch, getState) => { 
+       await http.delete('/mp/articles/' + id)
+    }
+}
