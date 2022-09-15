@@ -4,8 +4,10 @@ import { customHistory } from "./history";
 import { logOut } from '@/store/actions/user'
 import { getToken, clearToken } from '@/utils/auth'
 
+
+const baseURL = process.env.REACT_APP_URL
 const http = axios.create({
-    baseURL: 'http://geek.itheima.net/v1_0',
+    baseURL,
     timeout: 5000
 })
 
