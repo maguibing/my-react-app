@@ -2,16 +2,16 @@ import { Layout, Menu, Popconfirm, Button } from 'antd'
 import { Switch, Route, Link, Redirect, useLocation, useHistory } from 'react-router-dom'
 import { PieChartOutlined, SolutionOutlined, FileWordOutlined, LogoutOutlined } from '@ant-design/icons'
 import { getUserInfo, logOut } from '@/store/actions/user'
-import NotFound from '@/pages/NotFound'
-import Article from '@/pages/Article'
-import Publish from '@/pages/Publish'
-import Dashboard from '@/pages/Dashboard'
-
 import './index.scss'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 const { Header, Sider, Content } = Layout
+
+const NotFound = lazy(() => import('@/pages/NotFound'))
+const Article = lazy(() => import('@/pages/Article'))
+const Publish = lazy(() => import('@/pages/Publish'))
+const Dashboard = lazy(() => import('@/pages/Dashboard'))
+
 const GeekLayout = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
@@ -55,21 +55,23 @@ const GeekLayout = () => {
 					</div>
 				</Header>
 				<Content>
-					<Switch>
-						<Route path="/" exact render={() => <Redirect to="/dashboard"></Redirect>}></Route>
-						<Route path="/dashboard">
-							<Dashboard></Dashboard>
-						</Route>
-						<Route path="/article">
-							<Article></Article>
-						</Route>
-						<Route path="/publish/:id?">
-							<Publish></Publish>
-						</Route>
-						<Route>
-							<NotFound></NotFound>
-						</Route>
-					</Switch>
+					<Suspense fallback={<div style={{ marginTop: 200, textAlign: 'center' }}>loading...</div>}>
+						<Switch>
+							<Route path="/" exact render={() => <Redirect to="/dashboard"></Redirect>}></Route>
+							<Route path="/dashboard">
+								<Dashboard></Dashboard>
+							</Route>
+							<Route path="/article">
+								<Article></Article>
+							</Route>
+							<Route path="/publish/:id?">
+								<Publish></Publish>
+							</Route>
+							<Route>
+								<NotFound></NotFound>
+							</Route>
+						</Switch>
+					</Suspense>
 				</Content>
 			</Layout>
 		</Layout>
